@@ -19,8 +19,9 @@ def article_detail(request, article_id):
     context['article_obj'] = article
     return render_to_response("article_detail.html", context)
 
+
 def article_list(request):
-    articles = Article.objects.all()
-    context =dict()
+    articles = Article.objects.filter(is_deleted=False)
+    context = dict()
     context['articles'] = articles
     return render_to_response("article_list.html", context)

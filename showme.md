@@ -7,3 +7,21 @@ python manage.py + []
 - migrate 迁移
 - createsuperuser 创建后台超级用户
 
+## 修改模型要更新数据库
+python manage.py makemigrations
+python manage.py migrate
+
+## 改变model时，对于默认值的设置方法
+- 1、直接在字段中使用default字段来设置
+```
+create_time = models.DateTimeField(default=timezone.now())
+
+```
+- 2、在执行```python manage.py makemigrations```时命令行中设置
+
+- 3、对于DateTimeField，可以使用```auto=```来设置
+```
+create_time = models.DateTimeField(auto_now_add=True) #添加时间
+last_update_time = models.DateTimeField(auto_now=True) #修改时间
+```
+## 
