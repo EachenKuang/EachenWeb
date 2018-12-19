@@ -43,3 +43,14 @@ pass:kuang12345678
 字数截取：truncatechars\truncatechars_html\truncatewords\truncatewords_html
 是否信任html：safe
 长度：length
+
+## CSS框架
+bootstrap
+```
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
+第一条是为了兼容IE
+第二条是为了响应式布局
+
+建议JS文件放在body最下面
