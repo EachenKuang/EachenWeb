@@ -28,3 +28,18 @@ last_update_time = models.DateTimeField(auto_now=True) #修改时间
 用于表示文章是否被删除，因为数据库的删除操作是比较危险的，所以设置is_deleted字段来控制而不是实际删除
 这样的操作可以保证安全性
 
+use:eachen
+pass:kuang12345678
+
+## 常用的模板标签
+- 循环：for
+- 条件：if\ifequal\ifnotequal
+- 连接：url
+- 模板：block\extends\include
+- 注释：{# #}
+
+## 常用的过滤器
+日期：
+字数截取：truncatechars\truncatechars_html\truncatewords\truncatewords_html
+是否信任html：safe
+长度：length
