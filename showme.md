@@ -56,3 +56,26 @@ bootstrap
 建议JS文件放在body最下面
 
 响应式布局：根据窗口自动响应样式布局
+
+## 分页和shell命令行模式
+
+>>> for i in range(1,50):
+...     blog.title = "for %s" % i
+...     blog.blog_type = blog_type
+...     blog.author = user
+...     blog.content = "XXXX: %s" % i
+...     blog.save()
+
+分页器
+
+form django.core.paginator import Paginator
+paginator = Paginator(object_list, each_page_count)
+page1 = paginator(1)
+
+内容需要先排序
+在model中添加
+```
+    class Meta:
+        ordering = ["-create_time"]
+```
+
