@@ -115,3 +115,35 @@ filter()
 eg:`Blog.objects.filter(create_time__gt=blog.create_time).last()`
 exclude()
 同filter，只不过是filter的逆操作
+
+## 博客分类统计
+
+- 分类统计
+
+  - 方法一：直接计算
+    ```
+    blog_types_list = []
+        for blog_type in blog_types:
+            blog_type.blog_count = Blog.objects.filter(blog_type=blog_type).count()
+            blog_types_list.append(blog_type)
+    ```
+  - 方法二：使用annotate
+
+    ```p
+    context['blogs_types'] = BlogType.objects.annotate(blog_count=Count('blog'))
+    ```
+    为 BlogType 添加一个字段 blog_count
+
+- 日期归档
+    - 直接计算
+    ```
+    # 获取日期归档对应的博客数量
+        blog_dates = Blog.objects.dates('create_time', 'month', order='DESC')
+        blog_dates_dict = {}
+        for blog_date in blog_dates:
+            blog_count = Blog.objects.filter(create_time__year=blog_date.year,
+                                                create_time__month=blog_date.month).count()
+            blog_dates_dict[blog_date] = blog_count
+    ```
+    - 使用annotate
+    
