@@ -79,3 +79,12 @@ page1 = paginator(1)
         ordering = ["-create_time"]
 ```
 
+
+友好的用户体验
+当前页高亮
+不要过多页码选择
+
+```
+page_range = [current_page_num + offset for offset in range(-2, 3)
+              if 0 < current_page_num + offset <= paginator.num_pages]  # 为了避免出现超过阈值的页码
+```
