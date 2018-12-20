@@ -147,3 +147,43 @@ exclude()
     ```
     - 使用annotate
     
+## 博客后台富文本编辑
+
+- 简单文本编辑
+    - 直接贴入HTML代码
+- 富文本编辑
+    - 最终解析成HTML
+        * 富文本编辑器
+        * Markdown编辑器
+
+{{}}中使用过滤
+|   
+striptags 过滤掉标签
+safe 可以解析html
+
+django-ckeditor
+- 具有基本的富文本编辑功能
+- 可以上传图片
+- 可以查看源码
+- 有持续更新（维护）
+
+1. 安装
+2. 注册应用
+3. 配置model
+    - 把字段改成RichTextField
+    ```
+    from ckeditor.fields import RichTextField
+    content = RichTextField
+    ```
+4. 添加上传图片功能
+    - 安装
+        - pip install pillow
+    - 注册应用
+        - 'ckeditor_uploader'
+    - 配置URL
+        ```
+        path('ckeditor', include('ckeditor_uploader.urls'))
+        urlpatterns += static('/media/', document_root=settings.MEDIA_ROOT)
+        ```
+    - 配置model
+        - 把字段改成RichTextUploadingField
