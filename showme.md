@@ -59,18 +59,21 @@ bootstrap
 
 ## 分页和shell命令行模式
 
+```
 >>> for i in range(1,50):
 ...     blog.title = "for %s" % i
 ...     blog.blog_type = blog_type
 ...     blog.author = user
 ...     blog.content = "XXXX: %s" % i
 ...     blog.save()
+```
 
 分页器
-
+```
 form django.core.paginator import Paginator
 paginator = Paginator(object_list, each_page_count)
 page1 = paginator(1)
+```
 
 内容需要先排序
 在model中添加
@@ -80,11 +83,35 @@ page1 = paginator(1)
 ```
 
 
-友好的用户体验
-当前页高亮
-不要过多页码选择
+- 友好的用户体验
+- 当前页高亮
+- 不要过多页码选择
 
 ```
 page_range = [current_page_num + offset for offset in range(-2, 3)
               if 0 < current_page_num + offset <= paginator.num_pages]  # 为了避免出现超过阈值的页码
 ```
+
+## 上下篇博客和按月分类
+
+### 需求：
+在博客详情页中有上一篇与下一篇的链接操作
+Django filter
+
+条件中的双下划线
+
+filter()
+字段加上后面的状态
+- __gt    大于
+- __gte   大于等于
+- __lt    小于
+- __lte   小于等于
+- __in    其中之一
+- __range 范围
+- __contains  包含
+- __startwith 开头是
+- __endwith   结尾是
+
+eg:`Blog.objects.filter(create_time__gt=blog.create_time).last()`
+exclude()
+同filter，只不过是filter的逆操作
