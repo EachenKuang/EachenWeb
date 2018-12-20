@@ -2,6 +2,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.core.paginator import Paginator
 from .models import Blog, BlogType
 from django.db.models import Count
+from datetime import datetime
+
 NUM_BLOG_PER_PAGE = 10
 
 
@@ -61,12 +63,18 @@ def blog_list(request):
 
 
 def blog_detail(request, blog_pk):
-    context = dict()
     blog = get_object_or_404(Blog, pk=blog_pk)
+    if not request.COOKIES.get('blog_%s_read' % blog_pk):
+        blog.readed_num += 1
+        blog.save()
+
+    context = dict()
     context['blog'] = blog
     context['previous_blog'] = Blog.objects.filter(create_time__gt=blog.create_time).last()
     context['next_blog'] = Blog.objects.filter(create_time__lt=blog.create_time).first()
-    return render_to_response('blog/blog_detail.html', context)
+    response = render_to_response('blog/blog_detail.html', context) # 响应
+    response.set_cookie('blog_%s_read' % blog_pk, 'true', max_age=60, expires=datetime)
+    return response
 
 
 def blogs_with_type(request, blog_type_pk):
