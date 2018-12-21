@@ -219,3 +219,15 @@ class ReadNum(models.Model):
 在admin中可以通过方法get_read_num获取
 
 contenttype
+
+## 阅读计数统计和显示
+
+date = timezone.now().date()
+read_detail, created = ReadDetail.objects.get_or_create(content_type=ct, object_id=obj.pk, date=date)
+read_detail.read_num += 1
+read_detail.save()
+
+使用get_or_create
+
+
+使用[**highcharts**](https://www.hcharts.cn/docs/start-helloworld)来在网页上设置图片
