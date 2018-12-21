@@ -238,3 +238,22 @@ read_detail.save()
 昨日      昨天数据统计
 一周
 30天
+
+2\每次都计算，耗时
+策略：缓存数据，不用每次都计算
+
+setting 中：
+```
+# 缓存设置
+CASHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table'
+    }
+}
+```
+
+使用以下命令创建缓存表
+```shell
+python manage.py createcachetable
+```
