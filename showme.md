@@ -231,3 +231,10 @@ read_detail.save()
 
 
 使用[**highcharts**](https://www.hcharts.cn/docs/start-helloworld)来在网页上设置图片
+
+## 热门博客阅读及其缓存
+
+24小时内  今天数据统计
+昨日      昨天数据统计
+一周
+30天
