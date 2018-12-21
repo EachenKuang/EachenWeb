@@ -199,3 +199,23 @@ django-ckeditor
 1. 后台编辑博客可能影响数据
 2. 功能单一，无法统计某一天的阅读数
 3. 无法并发，会出现擦除数据
+
+## 博客阅读计数优化
+将read_num抽象出来成为一个model
+```
+class ReadNum(models.Model):
+    read_num = models.IntegerField(default=0)
+    blog = models.OneToOneField(Blog, on_delete=models.DO_NOTHING)
+```
+在blog model中添加一个获得方法
+```
+    def get_read_num(self):
+        try:
+            return self.readnum.read_num
+        except exceptions.ObjectDoesNotExist:
+            return 0
+```
+这样就能通过blog.readnum 获取ReadNum model,进而获取对应的read_num
+在admin中可以通过方法get_read_num获取
+
+contenttype
