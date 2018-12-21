@@ -2,7 +2,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Count
 from datetime import datetime
-from .models import Blog, BlogType, ReadNum
+from .models import Blog, BlogType
+from read_statistics.util import read_statistics_once_read
 
 NUM_BLOG_PER_PAGE = 10
 
@@ -64,22 +65,13 @@ def blog_list(request):
 
 def blog_detail(request, blog_pk):
     blog = get_object_or_404(Blog, pk=blog_pk)
-    if not request.COOKIES.get('blog_%s_read' % blog_pk):
-        if ReadNum.objects.filter(blog=blog).count():
-            # 存在记录
-            readnum = ReadNum.objects.get(blog=blog)
-        else:
-            # 不存在记录
-            readnum = ReadNum(blog=blog)
-        # 计数加一
-        readnum.read_num += 1
-        readnum.save()
+    read_cookie_key = read_statistics_once_read(request, blog)
     context = dict()
     context['blog'] = blog
     context['previous_blog'] = Blog.objects.filter(create_time__gt=blog.create_time).last()
     context['next_blog'] = Blog.objects.filter(create_time__lt=blog.create_time).first()
-    response = render_to_response('blog/blog_detail.html', context) # 响应
-    response.set_cookie('blog_%s_read' % blog_pk, 'true', max_age=60, expires=datetime)
+    response = render_to_response('blog/blog_detail.html', context)  # 响应
+    response.set_cookie(read_cookie_key, 'true', max_age=60, expires=datetime) # 阅读cookie key
     return response
 
 
