@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'read_statistics',
+    'comment',
 ]
 
 MIDDLEWARE = [
@@ -142,7 +143,7 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 # 自定义参数
 
 
-# 缓存设置
+# caches
 CASHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',

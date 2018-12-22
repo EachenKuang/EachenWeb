@@ -257,3 +257,27 @@ CASHES = {
 ```shell
 python manage.py createcachetable
 ```
+
+## 评论功能设计和用户登录
+1、实现评论功能的方式
+
+- 第三方社会化评论插件
+- Django评论库 django-comment
+- 自己写代码实现
+
+2、创建评论模型
+评论对象
+评论内容
+评论时间
+评论者
+
+3、评论需要登录用户
+确保较低程度减少垃圾评论
+也提高了评论门槛（第三方登录解决）
+还可以通知用户
+
+render 与 render_to_response的区别
+render比render_to_response需要多一个request
+在渲染时，会有默认的user
+推荐使用render
+
