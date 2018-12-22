@@ -281,3 +281,9 @@ render比render_to_response需要多一个request
 在渲染时，会有默认的user
 推荐使用render
 
+## html 表单提交评论
+```python
+from django.urls import reverse
+reverse('home')
+```
+反向解析使用rerverse，解析别名为'home'的url
