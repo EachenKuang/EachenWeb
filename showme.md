@@ -287,3 +287,30 @@ from django.urls import reverse
 reverse('home')
 ```
 反向解析使用rerverse，解析别名为'home'的url
+
+
+
+## 使用Django Form表单
+Django用Form类描述html表单，帮助或简化操作
+1、接受和处理用户提交
+可检查提交的数据
+课将数据转换成Python的数据类型
+2、可自动生成html代码
+创建form.py文件
+字段 html
+
+```
+from django.contrib.auth.models import User
+username = reg_form.cleaned_data['username']
+email = reg_form.cleaned_data['email']
+password = reg_form.cleaned_data['password']
+user = User.objects.create_user(username, email, password)
+user.save()
+
+user = User()
+user.username = username
+user.email = email
+user.set_password(password)
+user.save()
+```
+两种方式保存User
