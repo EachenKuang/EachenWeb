@@ -314,3 +314,10 @@ user.set_password(password)
 user.save()
 ```
 两种方式保存User
+
+## 富文本编辑和ajax提交评论
+1、django-ckeditor富文本表单
+
+可以在github上看到
+
+2、ajax提交
