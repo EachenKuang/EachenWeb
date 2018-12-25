@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'read_statistics',
     'comment',
+    'likes',
 ]
 
 MIDDLEWARE = [
@@ -134,7 +135,7 @@ STATICFILES_DIRS = [
 
 # media
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # setting ckeditor

@@ -17,6 +17,11 @@ ul.blog-info-description li {
     display: inline-block;
     margin-right: 1em;
 }
+
+div.blog-content {
+    text-indent: 2em;
+    margin-bottom: 2em ;
+}
 div.paginator {
     text-align: center;
 }
@@ -51,4 +56,14 @@ div#reply_content_container {
 p#reply_title {
     border-bottom: 1px dashed #ccc;
     padding-bottom: 0.5em;
+}
+
+div.like {
+    color: #337ab7;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.5em 0.3em;
+}
+div.like .active {
+    color: #f22
 }
