@@ -7,10 +7,10 @@ from django.utils import timezone
 from django.db.models import Sum
 from django.core.cache import cache
 from django.urls import reverse
+from django.http import JsonResponse
 
 from read_statistics.util import get_seven_days_read_data, get_today_hot_data, get_yesterday_hot_data
 from blog.models import Blog
-
 from .forms import LoginForm, RegForm
 
 
@@ -59,6 +59,20 @@ def login(request):
     context = dict()
     context['login_form'] = login_form
     return render(request, 'login.html', context)
+
+
+def login_for_medal(request):
+    login_form = LoginForm(request.POST)
+    data = dict()
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            user = login_form.cleaned_data['user']
+            auth.login(request, user)
+            data['status'] = 'SUCCESS'
+        else:
+            data['status'] = 'ERROR'
+    return JsonResponse(data)
 
 
 def register(request):

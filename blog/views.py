@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.db.models import Count
+
 from datetime import datetime
 from .models import Blog, BlogType
 from read_statistics.util import read_statistics_once_read
+from EachenWeb.forms import LoginForm
 
 NUM_BLOG_PER_PAGE = 10
 
@@ -29,16 +31,6 @@ def get_blog_list_common_data(request, blog_all_list):
         page_range.insert(0, 1)
     if page_range[-1] != paginator.num_pages:
         page_range.append(paginator.num_pages)
-
-    # 获取博客分类的对应博客数量
-    # BlogType.objects.annotate(blog_count=Count('blog'))
-    '''
-    blog_types = BlogType.objects.all()
-    blog_types_list = []
-    for blog_type in blog_types:
-        blog_type.blog_count = Blog.objects.filter(blog_type=blog_type).count()
-        blog_types_list.append(blog_type)
-    '''
 
     # 获取日期归档对应的博客数量
     blog_dates = Blog.objects.dates('create_time', 'month', order='DESC')
@@ -71,6 +63,8 @@ def blog_detail(request, blog_pk):
     context['blog'] = blog
     context['previous_blog'] = Blog.objects.filter(create_time__gt=blog.create_time).last()
     context['next_blog'] = Blog.objects.filter(create_time__lt=blog.create_time).first()
+    context['login_form'] = LoginForm()
+
     response = render(request, 'blog/blog_detail.html', context)  # 响应
     response.set_cookie(read_cookie_key, 'true', max_age=60, expires=datetime) # 阅读cookie key
     return response
