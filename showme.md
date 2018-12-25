@@ -326,3 +326,20 @@ user.save()
 ## 回复功能设计和树结构
 回复
 评论
+
+
+## 获取评论数和细节处理
+
+- 自定义模板标签
+降低耦合，代码更加独立和使用更加简单
+templatetags
+
+{% get_comment_list blog as comments %} 重命名不渲染
+
+
+- 细节处理
+1. ajax返回的日期
+返回的时间-->时间戳timestamp
+2. CSS样式调整
+3. 级联删除
+4. django-ckeditor
