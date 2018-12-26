@@ -172,3 +172,15 @@ CASHES = {
         'LOCATION': 'my_cache_table'
     }
 }
+
+
+# send email setting
+# https://docs.djangoproject.com/en/2.0/ref/settings/#email
+# https://docs.djangoproject.com/en/2.0/topics/email/
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'kuangyichen1993@163.com'
+EMAIL_HOST_PASSWORD = 'kuangyichen163'  # 授权码
+EMAIL_SUBJECT_PREFIX = '[EachenWeb] '
+EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)
