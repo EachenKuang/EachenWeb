@@ -379,3 +379,37 @@ TEMPLATES = [
 ]
 ```
 在TEMPLATES.OPTIONS中的context_processors中添加login_modal_form
+
+
+## 自定义用户模型
+1. 继承Django用户模型：
+* 方法
+    - 自定义模型继承AbstractUser
+    - 配置settings的AUTH_USER_MODEL
+* 使用
+    - 外键关联settings.AUTH_USER_MODEL
+    - 用get_user_model的方法获取User模型
+
+* 优缺点
+    - 优点：
+      * 自定义强
+      * 没有不必要的字段（需要继承AbstractBaseUser）
+    - 缺点：
+      * 需要删库重来或者要项目一开始就使用
+      * 配置admin麻烦
+
+2. 新的模型拓展
+* 方法
+  - 创建自定义模型
+  - 外键关联User
+
+* 使用
+  - 直接使用即可
+  
+* 优缺点
+  - 优点
+    - 使用方便
+    - 不用删库重来影响整体构架
+  - 缺点
+    - 存在不必要的字段
+    - 对比继承的而方法，查询速度稍微慢一点
