@@ -5,7 +5,7 @@ from django.db.models import Count
 from datetime import datetime
 from .models import Blog, BlogType
 from read_statistics.util import read_statistics_once_read
-from EachenWeb.forms import LoginForm
+
 
 NUM_BLOG_PER_PAGE = 10
 
@@ -63,7 +63,6 @@ def blog_detail(request, blog_pk):
     context['blog'] = blog
     context['previous_blog'] = Blog.objects.filter(create_time__gt=blog.create_time).last()
     context['next_blog'] = Blog.objects.filter(create_time__lt=blog.create_time).first()
-    context['login_form'] = LoginForm()
 
     response = render(request, 'blog/blog_detail.html', context)  # 响应
     response.set_cookie(read_cookie_key, 'true', max_age=60, expires=datetime) # 阅读cookie key

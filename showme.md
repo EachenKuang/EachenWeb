@@ -353,3 +353,29 @@ templatetags
 
 1、新增评论和回复无法点赞
 2、未登录情况下点赞
+
+## 登录与注册
+将关于登录与注册的模块集成到user app中
+template 中新增user文件夹，登录与注册对应的HTML移动至user
+
+将loginform作为全局调用的写入setting
+```
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        ,
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'user.context_processors.login_modal_form',
+            ],
+        },
+    },
+]
+```
+在TEMPLATES.OPTIONS中的context_processors中添加login_modal_form
