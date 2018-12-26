@@ -18,18 +18,19 @@
 </head>
 
 <body>
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="nav-header">
-                <a class="navbar-brand" href="{% url 'home' %}">个人博客网站</a>
-                <button type="button" class="navbar-toggle collapsed " data-toggle="collapse"
-                        data-target="#navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div id="navbar-collapse" class="collapse navbar-collapse" >
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container collapsed">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}"><span>个人博客网站</span></a>
+        </div>
+
+            <div id="navbar-collapse" class="collapse navbar-collapse in" aria-expanded="false" style="height: 1px;">
                 <ul class="nav navbar-nav">
                     <li class="{% block nav_home_active %}{% endblock %}">
                         <a href="/">首页</a>
@@ -65,7 +66,8 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </nav>
+
     {% block content %}{% endblock %}
     <!-- Modal -->
     <div class="modal fade" id="login_modal" tabindex="-1" role="dialog">
