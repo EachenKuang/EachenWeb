@@ -426,3 +426,18 @@ TEMPLATES = [
   - 可防止任务过多
   - 可定时执行一些任务
   - 开销更大
+  
+  
+##MySQL
+
+mysql -h localhost -u root -p
+
+python manage.py dumpdata > data.json
+python manage.py loaddata data.json
+
+create user 'kyc' identified by '123456'
+create database EachenWeb default charset=ut8mb4 default collate utf8mb4_inicode_ci
+grant all privileges on eachenweb.* to 'kyc';
+flush privileges;
+
+
