@@ -65,7 +65,7 @@ def blog_detail(request, blog_pk):
     context['next_blog'] = Blog.objects.filter(create_time__lt=blog.create_time).first()
 
     response = render(request, 'blog/blog_detail.html', context)  # 响应
-    response.set_cookie(read_cookie_key, 'true', max_age=60, expires=datetime) # 阅读cookie key
+    response.set_cookie(read_cookie_key, 'true', max_age=60, expires=datetime)  # 阅读cookie key
     return response
 
 

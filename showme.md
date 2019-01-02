@@ -441,3 +441,8 @@ grant all privileges on eachenweb.* to 'kyc';
 flush privileges;
 
 
+如果不需要在程序中特别处理时区（timezone-aware），在Django项目的settings.py文件中，
+可以直接设置为“USE_TZ = False”就省心了。
+然后，在models.py中简单的设置为“ create_time = models.DateTimeField(auto_now_add=True)”
+和“update_time = models.DateTimeField(auto_now=True)”。
+如果还要保持USE_TZ=True，则可设置为“default=datetime.now().replace(tzinfo=utc)” 。
