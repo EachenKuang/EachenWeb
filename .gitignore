@@ -15,4 +15,4 @@ venv
 
 # log
 *.log
-
+static_all/

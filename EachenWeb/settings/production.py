@@ -32,7 +32,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eachenweb',
         'USER': 'kyc',
-        'PASSWORD': 'DATABASE_PASSWORD',
+        'PASSWORD': DATABASE_PASSWORD,
         'HOST': 'localhost',
         'PORT': '3306',
     }
