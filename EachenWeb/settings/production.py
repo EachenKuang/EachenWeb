@@ -30,7 +30,7 @@ DATABASE_PASSWORD = os.environ['DATABASE_PASSWORD']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eachenweb',
+        'NAME': 'EachenWeb',
         'USER': 'kyc',
         'PASSWORD': DATABASE_PASSWORD,
         'HOST': 'localhost',
