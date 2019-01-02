@@ -446,3 +446,16 @@ flush privileges;
 然后，在models.py中简单的设置为“ create_time = models.DateTimeField(auto_now_add=True)”
 和“update_time = models.DateTimeField(auto_now=True)”。
 如果还要保持USE_TZ=True，则可设置为“default=datetime.now().replace(tzinfo=utc)” 。
+
+
+
+## 部署list
+1、关闭debug
+    多个settings.py文件
+    allow_hosts
+    使用环境变量设置敏感信息
+    日志文件
+    404、500错误页面
+    发送错误时，邮件通知管理员
+2、静态文件
+3、设置上传文件目录的权限
