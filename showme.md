@@ -459,3 +459,7 @@ flush privileges;
     发送错误时，邮件通知管理员
 2、静态文件
 3、设置上传文件目录的权限
+
+
+
+检查nginx错误日志(/var/log/nginx/error.log)
