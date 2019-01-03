@@ -48,7 +48,7 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'kuangyichen1993@163.com'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']  # 授权码
 EMAIL_SUBJECT_PREFIX = '[EachenWeb] '
-EMAIL_USE_SSS = True  # 与SMTP服务器通信时，是否启动SSL链接(安全链接)
+EMAIL_USE_SSL = True  # 与SMTP服务器通信时，是否启动SSL链接(安全链接)
 
 ADMINS = (
     ('admin', '695089605@qq.com'),
