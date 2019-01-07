@@ -463,3 +463,20 @@ flush privileges;
 
 
 检查nginx错误日志(/var/log/nginx/error.log)
+
+/usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data --daemonize /var/log/uwsgi-emperor.log
+
+https://eachen.online
+https://www.eachen.online
+https://myweb.eachen.online
+目前这三个网址都可以访问
+
+python manage.py collectstatic
+
+
+##  第三方登录：
+### QQ
+http://op.open.qq.com/appregv2/
+https://connect.qq.com/manage.html#/
+### 微信
+开发者资质审核需要300元
