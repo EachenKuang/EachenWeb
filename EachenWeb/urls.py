@@ -29,7 +29,9 @@ urlpatterns = [
     path('comment/', include('comment.urls')),
     path('likes/', include('likes.urls')),
     path('user/', include('user.urls')),
+    path('oauth/', include('oauth.urls')),
     path('favicon.ico', RedirectView.as_view(url='static/favicon.ico')),
+
 
 
 ]

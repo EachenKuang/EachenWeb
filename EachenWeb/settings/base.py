@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'comment',
     'likes',
     'user',
+    'oauth',
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,20 @@ CASHES = {
     }
 }
 
+OAUTH_GITHUB_CONFIG = {
+    'oauth_type_id': 3,  # 对应模型中记录的ID
+    'oauth_type': 'Github',
+
+    'client_id': 'edb50defaed8fd8e7265',
+    'client_secret': '2d6334e1685b2a93f24b0c421f86fe08e93cd87c',
+    'redirect_uri': 'https://www.eachen.online/oauth/github_check',  # 回调地址
+    'scope': 'user:email',  # 授权的权限
+    'state': 'Github',
+
+    # 其他请求的链接
+    'url_authorize': 'https://github.com/login/oauth/authorize',
+    'url_access_token': 'https://github.com/login/oauth/access_token',
+    'url_open_id': '',
+    'url_user_info': 'https://api.github.com/user',
+    'url_email': 'https://api.github.com/user/emails',
+}
