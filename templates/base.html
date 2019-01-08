@@ -73,8 +73,17 @@
     {% block content %}{% endblock %}
     <div class="footer">
         <div class="website-info">
-            <p>闽ICP备<a href="http://www.miitbeian.gov.cn/">19000302</a>号 Copyright©2019 www.eachen.online 版权所有</p>
-            <p>意见反馈或联系我（695089605@qq.com）</p>
+            <p><a href="http://www.miitbeian.gov.cn/">闽ICP备19000302号</a></p>
+            <p>
+                <img src="{% static 'beian.png' %}"/>
+                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35020302033327">
+                    闽公网安备 35020302033327号
+                </a>
+            </p>
+            <p>
+                Copyright ©2019 www.eachen.online 版权所有 <a href="mailto:eachen.kuang@foxmail.com">意见反馈</a>
+            </p>
+
         </div>
     </div>
     <!-- Modal -->
