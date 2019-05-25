@@ -31,6 +31,7 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('oauth/', include('oauth.urls')),
     path('favicon.ico', RedirectView.as_view(url='static/favicon.ico')),
+    path('movie/', include('movie.urls')),
 
 
 

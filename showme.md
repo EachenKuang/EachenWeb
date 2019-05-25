@@ -587,3 +587,5 @@ nginx测试命令：nginx -t
 （uwsgi中文）https://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/tutorials/Django_and_nginx.html
 （uwsgi英文）https://uwsgi.readthedocs.io/en/latest/tutorials/Django_and_nginx.html
 （自强学堂）https://code.ziqiangxuetang.com/django/django-nginx-deploy.html
+
+## 第三方登录 QQ

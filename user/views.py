@@ -1,14 +1,67 @@
 import string
 import random
 import time
+import json
 from django.shortcuts import render, redirect
+from urllib.parse import urlencode, parse_qs
+from urllib.request import urlopen
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import JsonResponse
 from django.core.mail import send_mail
+from django.conf import settings
+
 from .forms import LoginForm, RegForm, ChangeNicknameForm, BindEmailForm, ChangePasswordForm, ForgotPasswordForm
-from user.models import Profile
+from user.models import Profile, OAuthRelationship
+
+
+def qq_login(request):
+    code = request.GET['code']
+    state = request.GET['state']
+
+    if state != settings.QQ_STATE:
+        raise Exception("state error")
+
+    # 获取Access_token
+    params = {
+        'grant_type': 'authorization_code',
+        'client_id': settings.QQ_APP_ID,
+        'client_secret': settings.QQ_APP_KEY,
+        'code': code,
+        'redirect_uri': settings.QQ_REDIRECT_URL,
+
+    }
+    response = urlopen('https://graph.qq.com/oauth2.0/token?' + urlencode(params))
+    data = response.read().decode('utf8')
+    access_token = parse_qs(data)['access_token'][0]
+
+    # 获取openid
+    response = urlopen('https://graph.qq.com/oauth2.0/me?access_token=' + access_token)
+    data = response.read().decode('utf8')
+    openid = json.loads(data[10:-4])['openid']
+
+    # 判断openid是否有关联的用户
+    if OAuthRelationship.objects.filter(openid=openid, oauth_type=0).exists():
+        relationship = OAuthRelationship.objects.get(openid=openid, oauth_type=0)
+        auth.login(request, relationship.user)
+        return redirect(reverse('home'))
+    else:
+        request.session['openid'] = openid
+
+        # 获取QQ用户信息
+        params = {
+            'access_token': access_token,
+            'oauth_consumer_key': settings.QQ_APP_ID,
+            'openid': openid,
+        }
+        response = urlopen('https://graph.qq.com/user/get_user_info?' + urlencode(params))
+        data = json.loads(response.read().decode('utf8'))
+        params = {
+            'nickname': data['nickname'],
+            'avatar': data['figureurl_qq_1'],
+        }
+        return redirect(reverse('bind_qq') + '?' + urlencode(params))
 
 
 def login(request):
